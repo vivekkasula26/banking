@@ -1,0 +1,19 @@
+# Maven
+target/
+
+# IDEs
+.idea/
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Draw.io backups
+*.drawio.bkp
