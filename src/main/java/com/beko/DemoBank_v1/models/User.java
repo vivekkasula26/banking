@@ -30,7 +30,7 @@ public class User {
     private String token;
     private String code;
 
-    private int verified;
+    private int verified=1;
 
     private LocalDateTime verified_at;
 
