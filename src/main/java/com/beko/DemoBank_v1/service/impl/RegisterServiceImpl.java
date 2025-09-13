@@ -46,7 +46,7 @@ public class RegisterServiceImpl implements RegisterService {
         //TODO: REGISTER USER:
         userRepository.registerUser(firstName, lastName, email, hashed_password, token, Integer.toString(code));
 
-        sendEmailNotification(email, emailBody);
+        // sendEmailNotification(email, emailBody);
 
         Map<String, Object> response = createResponse(user);
 

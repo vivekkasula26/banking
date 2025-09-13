@@ -30,7 +30,8 @@ public class User {
     private String token;
     private String code;
 
-    private int verified=1;
+  @Column(nullable = false)
+private int verified = 1;
 
     private LocalDateTime verified_at;
 
