@@ -1,6 +1,8 @@
 package com.beko.DemoBank_v1.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
@@ -10,6 +12,7 @@ import java.time.LocalDateTime;
 public class TransactionHistory {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transaction_id;
     private int account_id;
     private String transaction_type;
