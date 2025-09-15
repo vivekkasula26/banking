@@ -222,7 +222,7 @@ public class SimulateOOM {
         System.gc();
 
         return ResponseEntity.ok(String.format(
-            "Cleanup done. Cleared %d cache entries, %d queue items, %d threads, %d transactions.",
+            "Cleanup done. Cleared %d cache entries, %d queue items, %d threads.",
             cacheSize, queueSize, threadCount
         ));
     }
