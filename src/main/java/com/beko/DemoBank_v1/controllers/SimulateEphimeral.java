@@ -13,7 +13,7 @@ import java.util.Random;
 @RestController
 @RequestMapping("/ephimeral")
 public class SimulateEphimeral {
-    private static final Logger log = LoggerFactory.getLogger(SimulateTlsDns.class);
+    private static final Logger log = LoggerFactory.getLogger(SimulateEphimeral.class);
 
 
     @GetMapping("/fill-disk")
