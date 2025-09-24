@@ -18,7 +18,7 @@ public class SimulateEphimeral {
 
     @GetMapping("/fill-disk")
     public ResponseEntity<String> fillDisk(@RequestParam(defaultValue = "1") int fileCount) {
-        File tempDir = new File(System.getProperty("java.io.tmpdir"));
+        File tempDir = new File("/var/tmp");
         Random random = new Random();
 
         try {
