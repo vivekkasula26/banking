@@ -1,5 +1,7 @@
 package com.beko.DemoBank_v1.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,8 @@ import java.util.Random;
 @RestController
 @RequestMapping("/ephimeral")
 public class SimulateEphimeral {
+    private static final Logger log = LoggerFactory.getLogger(SimulateTlsDns.class);
+
 
     @GetMapping("/fill-disk")
     public ResponseEntity<String> fillDisk(@RequestParam(defaultValue = "1") int fileCount) {
@@ -31,6 +35,8 @@ public class SimulateEphimeral {
             }
             return ResponseEntity.ok("Created " + fileCount + " files in temp dir.");
         } catch (IOException e) {
+            log.error("Error while filling disk space", e);
+            
             return ResponseEntity.status(500)
                     .body("Disk might be full! Error: " + e.getMessage());
         }
