@@ -9,6 +9,11 @@ import org.springframework.web.client.RestTemplate;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 
 @RestController
@@ -47,24 +52,45 @@ public class SimulateNetworkTimeouts {
      * Add read timeouts or switch to async streaming.
      */
     @GetMapping("/slow_stream")
-    public ResponseEntity<String> simulateSlowStream() {
-        try {
-            URL url = new URL("https://httpbin.org/drip?numbytes=5000&duration=30&delay=5"); 
-            // This API drips bytes slowly over 30 seconds → simulates a slow DB/ETL export
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(8_000); // Try changing this to see timeout vs hang
+    public ResponseEntity<String> simulateNetwork(@RequestParam(defaultValue = "timeout") String mode,
+                                                  @RequestParam(defaultValue = "6") int readTimeoutSeconds,
+                                                  @RequestParam(defaultValue = "10") int maxWaitSeconds) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
 
-            Scanner scanner = new Scanner(conn.getInputStream());
-            StringBuilder sb = new StringBuilder();
-            while (scanner.hasNext()) {
-                sb.append(scanner.next());
+        Future<String> future = executor.submit(() -> {
+            URL url;
+            if ("hang".equalsIgnoreCase(mode)) {
+                // Endpoint that hangs indefinitely (no response until killed)
+                url = new URL("https://httpbin.org/delay/300"); // 5 min hang
+            } else {
+                // Endpoint that streams slowly → will trigger read timeout
+                url = new URL("https://httpbin.org/drip?numbytes=5000&duration=30&delay=5");
             }
-            scanner.close();
 
-            return ResponseEntity.ok("Downloaded: " + sb.length() + " bytes");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(readTimeoutSeconds * 1000);
+
+            try (Scanner scanner = new Scanner(conn.getInputStream())) {
+                StringBuilder sb = new StringBuilder();
+                while (scanner.hasNext()) {
+                    sb.append(scanner.next());
+                }
+                return "Downloaded: " + sb.length() + " bytes";
+            }
+        });
+
+        try {
+            // Force max wait — if exceeded, treat as hang
+            String result = future.get(maxWaitSeconds, TimeUnit.SECONDS);
+            return ResponseEntity.ok(result);
+        } catch (TimeoutException te) {
+            log.error("Simulation [{}] exceeded {}s → marking as hang", mode, maxWaitSeconds, te);
+            return ResponseEntity.status(504).body("Gateway Timeout (hang detected)");
         } catch (Exception e) {
-            log.error("Slow stream timeout simulation triggered", e);
+            log.error("Simulation [{}] failed with error", mode, e);
             return ResponseEntity.status(408).body("Request Timeout: " + e.getMessage());
+        } finally {
+            executor.shutdownNow();
         }
     }
 
