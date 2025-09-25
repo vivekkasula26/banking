@@ -61,10 +61,10 @@ public class SimulateEphimeral {
     }
 
 
-   private static final long MAX_FOLDER_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
+   private static final long MAX_FOLDER_SIZE_BYTES = 1 * 1024 * 1024; // 1 MB
 
     @GetMapping("/log-growth")
-    public ResponseEntity<String> simulateLogGrowthWithLimit(@RequestParam(defaultValue = "1000") int lines) {
+    public ResponseEntity<String> simulateLogGrowthWithLimit(@RequestParam(defaultValue = "100000") long lines) {
         File logDir = new File("/var/tmp/logs");
         if (!logDir.exists()) logDir.mkdirs();
 
