@@ -16,7 +16,7 @@ public class WebSocketSimulationController {
     private static final Logger log = LoggerFactory.getLogger(WebSocketSimulationController.class);
 
     @GetMapping("/idle-socket")
-    public ResponseEntity<String> idleSocket(@RequestParam(defaultValue = "11") long durationSeconds) {
+    public ResponseEntity<String> idleSocket(@RequestParam(defaultValue = "16") long durationSeconds) {
         new Thread(() -> {
             try {
                 StandardWebSocketClient client = new StandardWebSocketClient();
@@ -81,7 +81,8 @@ public class WebSocketSimulationController {
     // ================================
     @GetMapping("/flood-messages")
     public ResponseEntity<String> floodMessages(@RequestParam(defaultValue = "1") long intervalMs,
-                                                @RequestParam(defaultValue = "10000") int messages) {
+                                                @RequestParam(defaultValue = "10000") int messages,
+                                                @RequestParam(defaultValue = "1000") int sizePerMessage) {
         new Thread(() -> {
             try {
                 StandardWebSocketClient client = new StandardWebSocketClient();
@@ -92,7 +93,7 @@ public class WebSocketSimulationController {
                 for (int i = 0; i < messages; i++) {
                     if (session.isOpen()) {
                         try {
-                            session.sendMessage(new TextMessage("Flood " + i));
+                            session.sendMessage(new TextMessage(("Flood" + i).repeat(sizePerMessage)));
                         } catch (Exception e) {
                             log.error("Flood message error (real): {}", e.getMessage(), e); // real IOException
                         }
