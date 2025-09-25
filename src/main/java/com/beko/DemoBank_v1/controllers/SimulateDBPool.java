@@ -15,6 +15,9 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequestMapping("/dbpool")
 public class SimulateDBPool {
@@ -96,6 +99,7 @@ public class SimulateDBPool {
     @PostMapping("/multi-service-load")
 public ResponseEntity<String> LoadSimulationService(@RequestParam(defaultValue = "30") int threadsPerService) {
 
+     Logger log = LoggerFactory.getLogger(this.getClass());
     int totalThreads = threadsPerService * 2;
     ExecutorService executor = Executors.newFixedThreadPool(totalThreads);
 
@@ -110,14 +114,18 @@ public ResponseEntity<String> LoadSimulationService(@RequestParam(defaultValue =
 
             transactService.deposit(requestMap, user);
             Thread.sleep(3000);
-        } catch (Exception ignored) {}
+        } catch (Exception e) {
+             log.error("Error in insertTask thread: {}", e.getMessage(), e);
+        }
     };
 
     Runnable updateTask = () -> {
         try {
             transactRepository.complexQuery(900000.0); // use your repo method
             Thread.sleep(5000);
-        } catch (Exception ignored) {}
+        } catch (Exception e) {
+            log.error("Error in updateTask thread: {}", e.getMessage(), e);
+        }
     };
 
     for (int i = 0; i < threadsPerService; i++) {

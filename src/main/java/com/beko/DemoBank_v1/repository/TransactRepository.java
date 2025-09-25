@@ -29,7 +29,7 @@ public interface TransactRepository extends CrudRepository<Transact, Integer> {
             "FROM transaction_history t " +
             "JOIN accounts a ON t.account_id = a.account_id " +
             "JOIN users u ON a.user_id = u.user_id " +
-            "WHERE t.amount > :minAmount " +
+            "WHERE t.amount < :minAmount " +
             "UNION " +
             "SELECT t.transaction_id, t.account_id, t.transaction_type, t.amount, t.source, t.status, a.account_number, u.first_name, u.last_name " +
             "FROM transaction_history t " +
