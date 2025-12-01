@@ -1,4 +1,4 @@
-# DemoBank_v1 — Reliability & Failure Simulation Platform
+# DemoBank_v1
 
 ## 1. Overview
 
