@@ -253,8 +253,6 @@ POST /dbpool/exhaust_db_and_OOM
 9.3 Multi-Service DB Load  
 POST /dbpool/multi-service-load
 
-9.4 Service-Based Load Simulation  
-POST /dbpool/LoadSimulationService?threadsPerService={n}
 
 | Parameter         | Type | Default | Description                                              |
 | ----------------- | ---- | ------- | -------------------------------------------------------- |
