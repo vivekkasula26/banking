@@ -1,5 +1,6 @@
 package com.beko.DemoBank_v1.service.impl;
 
+import com.beko.DemoBank_v1.controllers.SimulateAPIQuota;
 import com.beko.DemoBank_v1.models.Account;
 import com.beko.DemoBank_v1.models.PaymentHistory;
 import com.beko.DemoBank_v1.models.TransactionHistory;
@@ -8,6 +9,7 @@ import com.beko.DemoBank_v1.repository.AccountRepository;
 import com.beko.DemoBank_v1.repository.PaymentHistoryRepository;
 import com.beko.DemoBank_v1.repository.TransactHistoryRepository;
 import com.beko.DemoBank_v1.service.AppService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

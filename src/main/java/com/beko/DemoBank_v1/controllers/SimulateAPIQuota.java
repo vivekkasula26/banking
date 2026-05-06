@@ -18,7 +18,7 @@ public class SimulateAPIQuota {
     // Uses X-RateLimit-Remaining and X-RateLimit-Reset 
 
     @GetMapping("/github-rate-limit")
-    public String spamGitHub(@RequestParam(defaultValue = "100") int count) {
+    public String spamGitHub(@RequestParam(defaultValue = "55") int count) {
         String url = "https://api.github.com/users/octocat";
 
         for (int i = 0; i < count; i++) {

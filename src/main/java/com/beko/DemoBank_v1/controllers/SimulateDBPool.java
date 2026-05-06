@@ -97,7 +97,7 @@ public class SimulateDBPool {
         Multiple services simulation
      */
     @PostMapping("/multi-service-load")
-public ResponseEntity<String> LoadSimulationService(@RequestParam(defaultValue = "30") int threadsPerService) {
+public ResponseEntity<String> LoadSimulationService(@RequestParam(defaultValue = "100") int threadsPerService) {
 
      Logger log = LoggerFactory.getLogger(this.getClass());
     int totalThreads = threadsPerService * 2;
