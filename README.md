@@ -188,7 +188,6 @@ For sustained load and monitoring:
 
 - Edit `src/main/resources/application.properties` or use env vars for DB and port.
 - If `account_id = 1` errors occur, create that account or update code/tests.
-- I can add `db/init_seed.sql` in `db/`, generate an OpenAPI spec, or add Docker/Docker Compose files for an isolated test environment.
 
 ## License & disclaimer
 
