@@ -1,0 +1,730 @@
+{
+  "info": {
+    "_postman_id": "067f4c24-cd37-4f94-a1c5-8944d8a8a868",
+    "name": "bank",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "14216779"
+  },
+  "item": [
+    {
+      "name": "simulate",
+      "item": [
+        {
+          "name": "OOM",
+          "item": [
+            {
+              "name": "oom-transaction-history",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/oom/account_transaction_history",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "oom",
+                    "account_transaction_history"
+                  ]
+                },
+                "description": "use JMeter and simulate multiple requests"
+              },
+              "response": []
+            },
+            {
+              "name": "oom-in-mem-csv",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/oom/export-transactions-csv",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "oom",
+                    "export-transactions-csv"
+                  ]
+                },
+                "description": "use JMeter and simulate multiple requests"
+              },
+              "response": []
+            },
+            {
+              "name": "oom-queue-leak",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/oom/queue-leak",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "oom",
+                    "queue-leak"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "oom-multi-thread",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/oom/multi-thread-oom",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "oom",
+                    "multi-thread-oom"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "oom-simulate-login-many-users",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/oom/simulate-login",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "oom",
+                    "simulate-login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "oom-cache-leak",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/oom/cache-leak",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "oom",
+                    "cache-leak"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "oom-upload-big-files",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:\"\"",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "f5db4271-f21d-439a-9ac1-f8889f2fa4c1",
+                      "src": "/Users/vivek/Desktop/BikeTrip Vlogs/spiti-2.mp4"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}/oom/upload-file",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "oom",
+                    "upload-file"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "oom-cleanup",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/oom/cleanup",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "oom",
+                    "cleanup"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "API quota",
+          "item": [
+            {
+              "name": "rate-limit",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/rate-limit/github-rate-limit",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "rate-limit",
+                    "github-rate-limit"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "rate-limit-retry",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/rate-limit/github-spam-retry",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "rate-limit",
+                    "github-spam-retry"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "TLS DNS",
+          "item": [
+            {
+              "name": "expired certificate",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "/tls-dns/expired-cert",
+                  "path": [
+                    "tls-dns",
+                    "expired-cert"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "wrong domain",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/tls-dns/wrong-domain",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "tls-dns",
+                    "wrong-domain"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "certificate mismatch",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/tls-dns/cert-mismatch",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "tls-dns",
+                    "cert-mismatch"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Network Timeout",
+          "item": [
+            {
+              "name": "External API",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/network/external_api",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "network",
+                    "external_api"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Slow Stream",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/network/slow_stream",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "network",
+                    "slow_stream"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Retry storm",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/network/retry_storm",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "network",
+                    "retry_storm"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Exhaust DB",
+          "item": [
+            {
+              "name": "exhaust_db",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/dbpool/exhaust_db",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "dbpool",
+                    "exhaust_db"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "exhaust_db and OOM",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/dbpool/exhaust_db_and_OOM",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "dbpool",
+                    "exhaust_db_and_OOM"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "multi-service-load",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer:{{access_token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"account_id\": 1}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/dbpool/multi-service-load",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "dbpool",
+                    "multi-service-load"
+                  ]
+                },
+                "description": "use JMeter and simulate multiple requests"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Ephimeral Storage",
+          "item": [
+            {
+              "name": "Safe Fill",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/ephimeral/safe-fill",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "ephimeral",
+                    "safe-fill"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "CPU throttling",
+          "item": [
+            {
+              "name": "calculate_primes",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/cpu/calculate_primes",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "cpu",
+                    "calculate_primes"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "anlyze transactions",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/cpu/analyze_transactions_repo",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "cpu",
+                    "analyze_transactions_repo"
+                  ]
+                },
+                "description": "use Jmeter for multiple requests"
+              },
+              "response": []
+            },
+            {
+              "name": "cpu-report-threaded",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/cpu/cpu-report-threaded",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "cpu",
+                    "cpu-report-threaded"
+                  ]
+                },
+                "description": "use Jmeter for multiple requests"
+              },
+              "response": []
+            },
+            {
+              "name": "CPU usage",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/actuator/metrics/process.cpu.usage",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "actuator",
+                    "metrics",
+                    "process.cpu.usage"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Websocket Simulation",
+          "item": [
+            {
+              "name": "Idle Socket",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/ws-sim/idle-socket",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "ws-sim",
+                    "idle-socket"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Multi Socket",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/ws-sim/multi-socket",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "ws-sim",
+                    "multi-socket"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "heartbeat-disabled",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/ws-sim/heartbeat-disabled",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "ws-sim",
+                    "heartbeat-disabled"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "flood-messages",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}/ws-sim/flood-messages",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "ws-sim",
+                    "flood-messages"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "access_token",
+      "value": "\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2a0BnbWFpbC5jb20iLCJpYXQiOjE3NTcyMTAwOTIsImV4cCI6MTc1NzIxMDY5N30.hK6Gx7wi7IwwOSsQlj3ApS61DxskkEEeaF2e19IFhHU\"",
+      "type": "default"
+    }
+  ]
+}
